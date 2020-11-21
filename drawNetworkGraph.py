@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Jupyter Notebookでネットワーク図を出力します
 # createTalkCsvを先に実行していること
 

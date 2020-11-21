@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # 被リアクションランキングCSV作成
 # ※createTalkCsvを実行してから行うこと
 import pandas as pd

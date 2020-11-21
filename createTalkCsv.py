@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # channelごと日付ごとのファイルを取得してCSV作成
 # ※createMasterCsvを実行してから行うこと
 import os

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # channelsとusersのCSVを作成する
 import pandas as pd
 import json
