@@ -111,5 +111,9 @@ class CreateTalkCsv:
         self.outputCsv('output/mention', mention_cols, talk_mentions_all)
         self.outputCsv('output/file_name', file_name_cols, talk_file_names_all)
 
+
+if not (os.path.isdir("output/channel")): 
+    os.mkdir("output/channel")
+
 createTalkCsv = CreateTalkCsv()
 createTalkCsv.exec()

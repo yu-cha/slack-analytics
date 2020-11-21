@@ -1,8 +1,12 @@
 # channelsとusersのCSVを作成する
 import pandas as pd
 import json
+import os
 
 files = ['channels','users']
+
+if not (os.path.isdir("output")): 
+    os.mkdir("output")
 
 for filename in files:
   with open('data/' + filename +'.json', 'r', encoding='utf-8') as f:
@@ -16,5 +20,4 @@ for filename in files:
         display_name_custom = row['name'] if row['profile_display_name_normalized'] == "" else row['profile_display_name_normalized']
         print(display_name_custom)
         df.at[index, 'display_name_custom'] = display_name_custom
-
   df.to_csv('output/' + filename +'.csv', encoding='utf_8_sig')
