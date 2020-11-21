@@ -19,14 +19,16 @@ class CreateTalkCsv:
     def exec(self):
         # 列定義
         talk_cols = ['channel_id', 'talk_id', 'ts', 'thread_ts', 'talk_user', 'text', 'date']
-        talk_norequire_cols = ['subtype', 'thread_ts', 'reactions']
+        talk_norequire_cols = ['subtype', 'thread_ts', 'reactions', "files"]
         reaction_cols = ['channel_id', 'talk_id', 'talk_user', 'reaction_user', 'emoji', 'date']
         mention_cols = ['channel_id', 'talk_id', 'talk_user', 'mention_user', 'date']
+        file_name_cols = ["channel_id", "talk_id", "talk_user", "file_name"]
 
         # 初期化
         talks_all = []
         talk_reactions_all = []
         talk_mentions_all = []
+        talk_file_names_all = []
 
         df_channels = pd.read_csv('output/channels.csv', encoding='utf_8_sig')
         # アーカイブ済は除外
@@ -43,6 +45,7 @@ class CreateTalkCsv:
             talks = []
             talk_reactions = []
             talk_mentions = []
+            talk_file_names = []
 
             # 日付ファイル別ループ
             for datefile in datefiles:
@@ -90,13 +93,23 @@ class CreateTalkCsv:
                         talk_mentions.append(talk_mention)
                         talk_mentions_all.append(talk_mention)
 
+                    #file_name
+                    if row["files"] != "":
+                        for f in row["files"]:
+                            file_name = f["name"]
+                            talk_file_name = [channel_id, talk_id, talk_user, file_name]
+                            talk_file_names.append(talk_file_name)
+                            talk_file_names_all.append(talk_file_name)
+
             self.outputCsv('output/channel/' + channel_name +'_talk', talk_cols, talks)
             self.outputCsv('output/channel/' + channel_name +'_reaction', reaction_cols, talk_reactions)
             self.outputCsv('output/channel/' + channel_name +'_mention', mention_cols, talk_mentions)
+            self.outputCsv('output/channel/' + channel_name +'_file_name', file_name_cols, talk_file_names)
 
         self.outputCsv('output/talk', talk_cols, talks_all)
         self.outputCsv('output/reaction', reaction_cols, talk_reactions_all)
         self.outputCsv('output/mention', mention_cols, talk_mentions_all)
+        self.outputCsv('output/file_name', file_name_cols, talk_file_names_all)
 
 createTalkCsv = CreateTalkCsv()
 createTalkCsv.exec()
