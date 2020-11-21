@@ -23,7 +23,7 @@ class CreateTalkCsv:
         talk_norequire_cols = ['subtype', 'thread_ts', 'reactions', "files"]
         reaction_cols = ['channel_id', 'talk_id', 'talk_user', 'reaction_user', 'emoji', 'date']
         mention_cols = ['channel_id', 'talk_id', 'talk_user', 'mention_user', 'date']
-        file_name_cols = ["channel_id", "talk_id", "talk_user", "file_name"]
+        file_name_cols = ["channel_id", "talk_id", "ts", "talk_user", "file_name"]
 
         # 初期化
         talks_all = []
@@ -98,7 +98,7 @@ class CreateTalkCsv:
                     if row["files"] != "":
                         for f in row["files"]:
                             file_name = f["name"]
-                            talk_file_name = [channel_id, talk_id, talk_user, file_name]
+                            talk_file_name = [channel_id, talk_id, row["ts"], talk_user, file_name]
                             talk_file_names.append(talk_file_name)
                             talk_file_names_all.append(talk_file_name)
 
