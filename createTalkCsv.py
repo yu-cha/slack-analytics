@@ -19,10 +19,10 @@ class CreateTalkCsv:
 
     def exec(self):
         # 列定義
-        talk_cols = ['channel_id', 'talk_id', 'ts', 'thread_ts', 'talk_user', 'text', 'date']
+        talk_cols = ['channel_id', 'talk_id', 'ts', 'thread_ts', 'talk_user', 'talk_text', 'date_value']
         talk_norequire_cols = ['subtype', 'thread_ts', 'reactions', "files"]
-        reaction_cols = ['channel_id', 'talk_id', 'talk_user', 'reaction_user', 'emoji', 'date']
-        mention_cols = ['channel_id', 'talk_id', 'talk_user', 'mention_user', 'date']
+        reaction_cols = ['channel_id', 'talk_id', 'talk_user', 'reaction_user', 'emoji', 'date_value']
+        mention_cols = ['channel_id', 'talk_id', 'talk_user', 'mention_user', 'date_value']
         file_name_cols = ["channel_id", "talk_id", "talk_user", "file_name"]
 
         # 初期化
@@ -36,8 +36,8 @@ class CreateTalkCsv:
         df_channels = df_channels[df_channels['is_archived'] == False ]
 
         for index, channel in df_channels.iterrows():
-            channel_id = channel['id']
-            channel_name = channel['name']
+            channel_id = channel['channels_id']
+            channel_name = channel['channels_name']
 
             # チャンネルフォルダ内の日別jsonファイル一覧を取得
             datefiles = glob.glob('data/' + channel_name + '/*.json')
