@@ -15,11 +15,14 @@ for filename in files:
 
     df = pd.io.json.json_normalize(d, sep='_')
     new_id = "id"
+    new_name = "name"
     if filename == "users":
         new_id = "users_id"
+        new_name = "users_name"
     elif filename == "channels":
         new_id = "channels_id"
-    df = df.rename(columns={"id": new_id})
+        new_name = "channels_name"
+    df = df.rename(columns={"id": new_id, "name": new_name})
     if filename == 'users':
         df['display_name_custom'] = ""
     
