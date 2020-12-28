@@ -27,7 +27,7 @@ for filename in files:
         df['display_name_custom'] = ""
     
         for index, row in df.iterrows():
-            display_name_custom = row['name'] if row['profile_display_name_normalized'] == "" else row['profile_display_name_normalized']
+            display_name_custom = row[new_name] if row['profile_display_name_normalized'] == "" else row['profile_display_name_normalized']
             print(display_name_custom)
             df.at[index, 'display_name_custom'] = display_name_custom
     df.to_csv('output/' + filename +'.csv', encoding='utf_8_sig')
