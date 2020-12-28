@@ -23,7 +23,7 @@ class CreateTalkCsv:
         talk_norequire_cols = ['subtype', 'thread_ts', 'reactions', "files"]
         reaction_cols = ['channel_id', 'talk_id', 'talk_user', 'reaction_user', 'emoji', 'date_value']
         mention_cols = ['channel_id', 'talk_id', 'talk_user', 'mention_user', 'date_value']
-        file_name_cols = ["channel_id", "talk_id", "talk_user", "file_name"]
+        file_name_cols = ["channel_id", "talk_id", "ts", "talk_user", "file_name"]
 
         # 初期化
         talks_all = []
