@@ -10,6 +10,10 @@
 3. createMasterCsv.pyを実行
 4. createTalkCsv.pyを実行
 
+## slack-analyse.bat
+Windows のディレクトリパスを引数にとり、対象ディレクトリを data ディレクトリとみなしてログ加工を行うスクリプト  
+wsl 上で実行する必要がある
+
 ## createMasterCsv.py
 channels.json、users.jsonからcsv作成
 - output
@@ -17,15 +21,17 @@ channels.json、users.jsonからcsv作成
 	- users.csv
 
 ## createTalkCsv.py
-チャンネルごと日付ごとのログからメッセージ、リアクション、メンションcsvを作成
+チャンネルごと日付ごとのログからメッセージ、リアクション、メンション、ファイル名csvを作成
 - output
 	- talk.csv
 	- reaction.csv
 	- mention.csv
+    - file_name.csv
 	- チャンネル名ディレクトリ
 		- talk.csv
 		- reaction.csv
 		- mention.csv
+        - file_name.csv
 
 ### メッセージ
 |channel_id|talk_id|talk_user|text|
@@ -46,6 +52,11 @@ channels.json、users.jsonからcsv作成
 |channel_id|talk_id|talk_user|mention_user|
 |:--|:--|:--|:--|
 |C5XXXXXXX|XX1|U9XXXXXXX|U8YYYYYYY|
+
+### ファイル名
+|channel_id|talk_id|talk_user|file_name|
+|:--|:--|:--|:--|
+|C5XXXXXXX|XX1|U9XXXXXXX|FLXXXXXXX.jpg|
 
 ## グラフ作成　使い方
 
