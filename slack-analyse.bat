@@ -22,6 +22,12 @@ CREATE_TALK_PY="${SCRIPT_DIR}/createTalkCsv.py"
 
 cd "${TARGET_PATH}"
 
+if [ -e "./data" ]; then
+    echo "「$(wslpath -m "${TARGET_PATH}/")\\data」 の作成を試みましたが、既に存在するため失敗しました。"
+    echo "該当ファイル/フォルダを削除したのちに再度実行してください"
+    exit 1
+fi
+
 ln -s . ./data
 
 python3 "${CREATE_MASTER_PY}"
